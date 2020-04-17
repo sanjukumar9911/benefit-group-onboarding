@@ -73,9 +73,13 @@ public class DomainController {
 
 		Optional<Domain> domain = mongoRepo.findById(id);
 		
+		if(domain==null || domain.get()==null) {
+			logger.info("No Data found ::::");
+			return null;
+		}
 		Domain d = domain.get();
 		
-		logger.info(gson.toJson(d));
+		logger.info("DATA ::",gson.toJson(d));
 		
 		List<Domain> domainDataCurrent = mongoRepo.findByDomaincurrent("N23WORK",new Date());
 		
